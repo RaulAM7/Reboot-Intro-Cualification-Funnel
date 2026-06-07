@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reboot · Orientación y Admisión</title>
+<link rel="icon" type="image/png" href="funnel/favicon-32x32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --rb-black: hsl(174, 56%, 4%);
+    --rb-cream: hsl(40, 39%, 95%);
+    --rb-secondary: hsl(220, 98%, 74%);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Darker Grotesque', system-ui, sans-serif;
+    background: var(--rb-black);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  #root { min-height: 100vh; }
+  a { color: inherit; }
+  ::selection { background: var(--rb-primary, #36E0D6); color: #04201d; }
+
+  /* question transitions */
+  @keyframes rbInUp   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes rbInDown { from { opacity: 0; transform: translateY(-22px); } to { opacity: 1; transform: none; } }
+  @keyframes rbOutUp  { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-22px); } }
+  @keyframes rbOutDown{ from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(22px); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* tweaks panel look (dark, on-brand) */
+  .tweaks-panel { font-family: 'Darker Grotesque', sans-serif !important; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+  /* ---- Config (V1 placeholders — edit when real values are ready) ---- */
+  window.REBOOT_CONFIG = {
+    calUrl: '', // e.g. 'https://cal.com/reboot/orientacion' — empty shows the on-brand sample calendar
+  };
+</script>
+
+<script src="funnel/data.js"></script>
+<script type="text/babel" src="funnel/tweaks-panel.jsx"></script>
+<script type="text/babel" src="funnel/ui.jsx"></script>
+<script type="text/babel" src="funnel/screens.jsx"></script>
+<script type="text/babel" src="funnel/form.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useCallback } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "formTheme": "dark",
+  "accent": "teal",
+  "autoAdvance": true,
+  "showNumbers": true
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  teal:       { primary: 'hsl(176, 73%, 55%)', inkDark: 'hsl(176, 73%, 60%)', inkLight: '#0a8f6e' },
+  periwinkle: { primary: 'hsl(220, 98%, 74%)', inkDark: 'hsl(220, 98%, 78%)', inkLight: '#2f56c4' },
+  mint:       { primary: '#69e6c8',            inkDark: '#7defcf',            inkLight: '#0a8f6e' }
+};
+
+function themeVars(theme, accent) {
+  const a = ACCENTS[accent] || ACCENTS.teal;
+  const base = { '--rb-primary': a.primary };
+  if (theme === 'cream') {
+    return {
+      ...base,
+      '--rb-surface': 'var(--rb-cream)',
+      '--rb-card': '#ffffff',
+      '--rb-text': 'hsl(174, 56%, 8%)',
+      '--rb-muted': 'hsl(174, 14%, 30%)',
+      '--rb-faint': 'hsl(174, 8%, 46%)',
+      '--rb-line': 'hsl(174, 14%, 84%)',
+      '--rb-line-strong': 'hsl(174, 14%, 52%)',
+      '--rb-choice-bg': '#ffffff',
+      '--rb-choice-hover': 'rgba(54,224,214,0.12)',
+      '--rb-primary-ink': a.inkLight,
+      '--rb-secondary-ink': '#264d98',
+      '--rb-primary-tint': 'rgba(54,224,214,0.16)',
+      '--rb-progress-track': 'hsl(174, 14%, 86%)',
+      '--rb-danger': '#c0362f'
+    };
+  }
+  return {
+    ...base,
+    '--rb-surface': 'var(--rb-black)',
+    '--rb-card': '#0b1917',
+    '--rb-text': '#ffffff',
+    '--rb-muted': 'rgba(255,255,255,0.74)',
+    '--rb-faint': 'rgba(255,255,255,0.5)',
+    '--rb-line': 'rgba(255,255,255,0.16)',
+    '--rb-line-strong': 'rgba(255,255,255,0.42)',
+    '--rb-choice-bg': 'rgba(255,255,255,0.03)',
+    '--rb-choice-hover': 'rgba(54,224,214,0.10)',
+    '--rb-primary-ink': a.inkDark,
+    '--rb-secondary-ink': 'var(--rb-secondary)',
+    '--rb-primary-tint': 'rgba(54,224,214,0.12)',
+    '--rb-progress-track': 'rgba(255,255,255,0.12)',
+    '--rb-danger': '#ff8a8a'
+  };
+}
+
+const LS_KEY = 'reboot_funnel_v1';
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { return {}; }
+}
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const saved = React.useMemo(loadState, []);
+  const [screen, setScreen] = useState(saved.screen || 'landing');
+  const [answers, setAnswers] = useState(saved.answers || {});
+
+  useEffect(() => {
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ screen, answers })); } catch (e) {}
+  }, [screen, answers]);
+
+  const setAnswer = useCallback((field, value) => {
+    setAnswers((prev) => ({ ...prev, [field]: value }));
+  }, []);
+
+  const lead = React.useMemo(() => window.scoreLead(answers), [answers]);
+
+  const handleComplete = useCallback(() => {
+    // V1: here is where the payload would POST to Supabase.
+    const l = window.scoreLead(answers);
+    const payload = { ...answers, lead_score: l.score, lead_temperature: l.temperature,
+      lead_tags: l.tags, lead_summary: window.summarizeLead(answers, l) };
+    console.log('[Reboot funnel] lead payload →', payload);
+    setScreen('final');
+    window.scrollTo(0, 0);
+  }, [answers]);
+
+  const restart = useCallback(() => {
+    setAnswers({}); setScreen('landing'); window.scrollTo(0, 0);
+  }, []);
+
+  const vars = themeVars(t.formTheme, t.accent);
+  // Landing & final/form share accent; landing keeps brand-dark styling regardless of theme.
+  const landingVars = themeVars('dark', t.accent);
+
+  return (
+    <div style={{ ...(screen === 'landing' ? landingVars : vars), minHeight: '100vh' }}>
+      {screen === 'landing' && (
+        <Landing onStart={() => { setScreen('form'); window.scrollTo(0, 0); }} />
+      )}
+      {screen === 'form' && (
+        <FormFlow
+          steps={window.REBOOT_STEPS}
+          answers={answers}
+          setAnswer={setAnswer}
+          onComplete={handleComplete}
+          onExit={() => { setScreen('landing'); window.scrollTo(0, 0); }}
+          tweaks={{ autoAdvance: t.autoAdvance, showNumbers: t.showNumbers }}
+        />
+      )}
+      {screen === 'final' && (
+        <FinalScreen answers={answers} lead={lead} calUrl={window.REBOOT_CONFIG.calUrl} onRestart={restart} />
+      )}
+
+      <TweaksPanel>
+        <TweakSection label="Estética del cuestionario" />
+        <TweakRadio label="Tema" value={t.formTheme}
+          options={['dark', 'cream']}
+          onChange={(v) => setTweak('formTheme', v)} />
+        <TweakRadio label="Acento" value={t.accent}
+          options={['teal', 'periwinkle', 'mint']}
+          onChange={(v) => setTweak('accent', v)} />
+        <TweakSection label="Comportamiento" />
+        <TweakToggle label="Auto-avanzar al elegir" value={t.autoAdvance}
+          onChange={(v) => setTweak('autoAdvance', v)} />
+        <TweakToggle label="Numerar preguntas" value={t.showNumbers}
+          onChange={(v) => setTweak('showNumbers', v)} />
+        <TweakButton label="Reiniciar respuestas" onClick={restart} />
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

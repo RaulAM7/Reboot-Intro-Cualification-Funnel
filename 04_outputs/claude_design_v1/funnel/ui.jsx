@@ -1,0 +1,153 @@
+/* Reboot Orientation Funnel — shared UI components.
+   React (Babel). All components exported to window at the end. */
+
+// ---- REBOOT ACADEMY wordmark (teal "REBOOT" + light "ACADEMY"), from brand SVG ----
+function RebootWordmark({ height = 26, mono = false }) {
+  const teal = mono ? 'currentColor' : 'var(--rb-primary)';
+  const light = 'currentColor';
+  return (
+    <svg height={height} viewBox="0 0 677 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Reboot Academy" role="img" style={{ display: 'block' }}>
+      <path d="M585.425 62.422H582.66V11.9986C584.294 11.6698 585.493 11.8535 586.615 13.4586C592.281 21.4935 598.111 29.4026 603.883 37.3602C604.203 37.7953 604.522 38.2207 604.928 38.7815C605.953 37.3795 606.89 36.0935 607.828 34.8076C613.021 27.6816 618.271 20.6039 623.337 13.4006C624.449 11.8245 625.648 11.7375 627.282 11.9696V62.3833H624.536V17.2875C624.449 17.2488 624.353 17.2101 624.266 17.1715C617.855 25.9702 611.445 34.7689 604.928 43.7126C598.45 34.7882 592.049 25.9702 585.425 16.8427V62.422Z" fill={light}/>
+      <path d="M487.431 12.008C487.644 11.95 487.75 11.8919 487.856 11.8919C493.967 11.9306 500.097 11.7082 506.189 12.0756C517.463 12.7525 526.716 21.0677 528.988 32.1483C531.715 45.4141 523.38 58.6122 510.211 61.7739C508.471 62.1897 506.653 62.4314 504.864 62.4604C499.343 62.5474 493.813 62.4894 488.292 62.4894C488.031 62.4894 487.76 62.441 487.421 62.412V12.008H487.431ZM490.274 59.7821C495.002 59.7821 499.585 59.8014 504.158 59.7724C505.29 59.7724 506.43 59.6951 507.552 59.521C519.184 57.7323 527.576 47.2318 526.697 35.5615C525.817 23.8427 516.041 14.7249 504.265 14.6476C499.952 14.6186 495.65 14.6476 491.337 14.6476C490.999 14.6476 490.66 14.6863 490.283 14.7153V59.7918L490.274 59.7821Z" fill={light}/>
+      <path d="M374.946 62.4891C373.998 62.4891 373.196 62.5955 372.451 62.4408C372.084 62.3634 371.678 61.8703 371.523 61.4642C369.676 56.7651 367.849 52.066 366.089 47.3379C365.722 46.3614 365.248 46.081 364.223 46.0906C357.213 46.139 350.193 46.1486 343.183 46.0906C342.023 46.081 341.569 46.4967 341.201 47.5023C339.558 51.979 337.788 56.417 336.174 60.9034C335.738 62.1217 335.187 62.7598 333.843 62.5085C333.437 62.4311 333.002 62.4988 332.432 62.4988C333.669 59.2694 334.839 56.2043 336.009 53.1489C341.163 39.7575 346.336 26.366 351.46 12.9649C351.789 12.114 352.195 11.853 353.065 11.8723C355.521 11.9207 355.521 11.882 356.401 14.1832C362.425 29.8468 368.458 45.5008 374.482 61.1645C374.617 61.5222 374.733 61.8993 374.936 62.4891H374.946ZM364.474 43.2963C360.887 33.9755 357.339 24.7417 353.674 15.2081C350.01 24.7513 346.461 33.9755 342.874 43.2963H364.465H364.474Z" fill={light}/>
+      <path d="M435.248 62.4895C436.727 58.6413 438.129 54.9961 439.531 51.3509C444.434 38.617 449.345 25.883 454.218 13.1297C454.586 12.1725 455.021 11.8147 456.065 11.8534C458.347 11.9404 458.357 11.8824 459.169 13.9999C465.222 29.7312 471.284 45.4626 477.337 61.1939C477.472 61.5516 477.588 61.9191 477.782 62.4799C476.844 62.4799 476.032 62.5669 475.248 62.4412C474.91 62.3832 474.533 61.9191 474.388 61.5516C472.56 56.8912 470.733 52.2308 469.002 47.5317C468.606 46.4488 468.122 46.062 466.933 46.0814C459.884 46.1491 452.826 46.1297 445.778 46.091C444.898 46.091 444.492 46.3328 444.182 47.1933C442.48 51.815 440.643 56.3981 438.971 61.0295C438.545 62.2091 437.984 62.6829 436.785 62.4992C436.37 62.4315 435.935 62.4895 435.277 62.4895H435.248ZM467.301 43.3064C463.713 33.9855 460.165 24.7421 456.491 15.1988C452.826 24.7421 449.278 33.9759 445.69 43.3064H467.291H467.301Z" fill={light}/>
+      <path d="M570.052 62.4414H539.759V11.96H570.033V14.6189H542.67V30.0215H566.581V32.7481H542.679V59.7728H570.042V62.4317L570.052 62.4414Z" fill={light}/>
+      <path d="M423.713 52.5597C424.438 53.2171 425.095 53.807 425.753 54.4064C419.459 62.0062 408.339 65.371 397.781 62.0449C386.565 58.5157 379.4 48.2763 379.507 36.2289C379.603 25.216 387.251 14.7639 397.761 11.6891C408.465 8.54675 419.207 11.5248 425.743 19.3179C425.086 19.9174 424.428 20.5169 423.694 21.184C418.182 15.3537 411.472 12.5207 403.466 13.3135C397.326 13.9227 392.163 16.6686 388.151 21.3677C379.942 30.9786 380.531 44.9792 389.427 53.7586C398.535 62.741 413.851 63.2825 423.713 52.5597Z" fill={light}/>
+      <path d="M676.652 12.0079C675.714 13.3228 674.844 14.5508 673.954 15.7691C669.245 22.3149 664.517 28.8608 659.847 35.426C659.47 35.9481 659.228 36.6926 659.228 37.3404C659.19 45.2109 659.199 53.0911 659.199 60.9713V62.4216H656.366V61.0486C656.366 53.1685 656.386 45.298 656.337 37.4178C656.337 36.7023 656.066 35.8708 655.651 35.281C650.391 27.8262 645.073 20.4102 639.774 12.9844C639.571 12.704 639.388 12.4043 639.185 12.1046C641.215 11.4374 642.308 11.7662 643.458 13.3809C648.003 19.7623 652.547 26.1438 657.091 32.5157C657.314 32.8251 657.556 33.1248 657.846 33.5115C658.087 33.2215 658.29 32.9991 658.455 32.767C662.98 26.4242 667.592 20.1394 671.962 13.6903C673.229 11.8242 674.631 11.6695 676.652 11.9982V12.0079Z" fill={light}/>
+      <path d="M102.384 63.2701V9.94751C102.746 9.94751 103.089 9.94751 103.431 9.94751C109.554 9.94751 115.677 9.94751 121.799 9.94751C131.799 9.94751 138.355 19.5748 134.72 28.8899C134.639 29.0913 134.559 29.2927 134.518 29.4035C135.817 30.481 137.177 31.4478 138.335 32.6058C147.328 41.5584 144.428 56.6841 132.796 61.7696C130.49 62.7767 128.104 63.2903 125.596 63.3003C118.114 63.3003 110.631 63.3003 103.149 63.3003C102.938 63.3003 102.716 63.2802 102.394 63.2601L102.384 63.2701ZM112.364 53.4112C112.585 53.4213 112.766 53.4515 112.948 53.4515C117.187 53.4515 121.427 53.4515 125.677 53.4515C125.948 53.4515 126.22 53.4314 126.492 53.3911C130.913 52.6862 133.914 48.9299 133.592 44.499C133.3 40.4003 129.614 37.1476 125.244 37.1375C121.246 37.1375 117.248 37.1375 113.25 37.1375C112.958 37.1375 112.676 37.1375 112.353 37.1375V53.4112H112.364ZM112.364 27.2887C112.666 27.2988 112.927 27.329 113.189 27.329C116.049 27.329 118.899 27.329 121.759 27.329C124.065 27.329 125.747 25.758 125.757 23.6029C125.757 21.468 124.005 19.8064 121.719 19.8064C118.859 19.8064 116.009 19.8064 113.149 19.8064H112.364V27.2988V27.2887Z" fill={teal}/>
+      <path d="M179.533 63.3108C163.884 63.0893 151.527 50.6121 151.719 35.2245C151.9 19.8471 164.609 7.37997 179.744 7.5411C195.323 7.70222 208.042 20.5017 207.539 36.4129C207.075 51.2767 194.86 63.3108 179.533 63.3108ZM161.799 35.4662C161.789 45.2446 169.734 53.3714 179.331 53.3915C189.382 53.4116 197.388 45.5064 197.438 35.5267C197.478 25.849 189.452 17.5712 180.006 17.551C169.835 17.5309 161.819 25.4261 161.799 35.4662Z" fill={teal}/>
+      <path d="M25.9225 35.9896C32.5287 45.0932 39.0744 54.1062 45.7007 63.2299C45.3483 63.2601 45.1166 63.3004 44.8951 63.3004C41.4712 63.3004 38.0372 63.3004 34.6132 63.3206C34.0594 63.3206 33.7371 63.1292 33.4149 62.6861C27.4331 54.4284 21.4311 46.1909 15.4493 37.9332C15.0667 37.3994 14.6739 37.2081 14.0395 37.2383C12.962 37.2887 11.8744 37.2484 10.7163 37.2484V63.24H0.988281V9.99794C1.27025 9.9778 1.55222 9.95766 1.84426 9.94759C7.85627 9.94759 13.8683 9.93752 19.8803 9.94759C26.1441 9.95766 31.6727 14.2074 33.2336 20.1892C34.7945 26.1609 32.0755 32.475 26.6073 35.5767C26.3958 35.6975 26.1944 35.8184 25.9225 35.9795V35.9896ZM10.7465 27.4902C13.8079 27.4902 16.8189 27.5103 19.8299 27.4902C22.1663 27.47 23.8883 25.7782 23.8883 23.5929C23.8883 21.3573 22.1461 19.7259 19.7393 19.7159C17.0203 19.7159 14.3013 19.7159 11.5823 19.7159C11.3205 19.7159 11.0486 19.736 10.7364 19.7561V27.5002L10.7465 27.4902Z" fill={teal}/>
+      <path d="M273.963 34.0158C273.963 48.7991 263.197 61.0548 248.817 63.0487C235.393 64.9117 220.559 56.7245 216.682 41.0751C213.913 29.9272 218.173 17.9234 227.417 11.0856C229.472 9.56495 232.251 9.74622 233.883 11.4985C235.675 13.432 235.695 16.1409 233.933 18.165C232.412 19.9072 230.791 21.5588 229.401 23.3916C227.649 25.6977 226.33 28.2757 225.826 31.176C224.265 40.1386 229.552 49.1818 238.162 52.3842C249.965 56.7648 262.895 48.8193 264.144 36.2917C264.839 29.3432 262.341 23.593 256.944 19.162C255.312 17.8227 254.295 16.2718 254.678 14.0966C255.322 10.4008 259.421 8.7996 262.402 11.0856C267.135 14.721 270.367 19.4339 272.341 25.033C273.389 28.0038 274.003 31.0551 273.953 34.0057L273.963 34.0158Z" fill={teal}/>
+      <path d="M54.3613 9.99805H89.376V19.6958H64.4116V27.5205H86.1736V37.47H64.4317V53.351H88.7114V63.2502H54.3613V9.99805Z" fill={teal}/>
+      <path d="M304.194 63.2496H294.114V19.8564H281.093V10.0076H317.215V19.8363H304.204V63.2597L304.194 63.2496Z" fill={teal}/>
+      <path d="M249.734 17.2788C249.734 21.3271 249.754 25.3854 249.734 29.4337C249.724 31.9916 247.84 33.9956 245.313 34.2272C242.856 34.4488 240.58 32.7166 240.116 30.2494C240.066 29.9574 240.046 29.6553 240.046 29.3531C240.046 21.3573 240.036 13.3614 240.046 5.36552C240.046 1.8711 243.269 -0.495436 246.461 0.592165C248.435 1.26688 249.724 3.09969 249.724 5.28496C249.734 9.2829 249.724 13.2808 249.724 17.2788H249.734Z" fill={teal}/>
+    </svg>
+  );
+}
+
+// ---- Reboot "power" mark (the O with the power glyph) — compact icon ----
+function RebootMark({ size = 34 }) {
+  return (
+    <svg width={size} height={size} viewBox="600 470 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ display: 'block' }}>
+      <path d="M828.248 592.872C828.248 644.509 790.861 687.316 740.916 694.281C694.291 700.788 642.775 672.191 629.312 617.529C619.694 578.591 634.488 536.663 666.599 512.779C673.729 507.467 683.384 508.1 689.051 514.221C695.276 520.974 695.345 530.436 689.22 537.507C683.94 543.592 678.312 549.361 673.49 555.763C667.405 563.818 662.821 572.822 661.071 582.953C655.652 614.258 674.007 645.845 703.917 657.031C744.903 672.332 789.817 644.579 794.152 600.821C796.558 576.551 787.888 556.466 769.145 540.989C763.477 536.311 759.947 530.893 761.27 523.296C763.507 510.387 777.746 504.794 788.097 512.779C804.533 525.477 815.759 541.939 822.62 561.496C826.259 571.873 828.387 582.53 828.218 592.837L828.248 592.872Z" fill="var(--rb-primary)"/>
+      <path d="M744.097 534.409C744.097 548.549 744.167 562.726 744.097 576.866C744.067 585.8 737.525 592.8 728.745 593.609C720.213 594.383 712.308 588.333 710.698 579.715C710.529 578.695 710.459 577.64 710.459 576.584C710.459 548.655 710.419 520.726 710.459 492.798C710.459 480.592 721.645 472.326 732.732 476.125C739.593 478.482 744.067 484.884 744.067 492.517C744.097 506.481 744.067 520.445 744.067 534.409H744.097Z" fill="var(--rb-primary)"/>
+    </svg>
+  );
+}
+
+// ---- Primary / outline button (Reboot: sharp 4px, bold, teal fill -> invert) ----
+function RBButton({ children, onClick, variant = 'primary', disabled, type = 'button', full, style }) {
+  const [hover, setHover] = React.useState(false);
+  const base = {
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+    height: 56, padding: '0 1.6rem', borderRadius: 4, cursor: disabled ? 'not-allowed' : 'pointer',
+    fontFamily: 'inherit', fontWeight: 800, fontSize: '1.35rem', letterSpacing: '-0.01em',
+    lineHeight: 1, border: '2px solid var(--rb-primary)', transition: 'all .18s ease',
+    width: full ? '100%' : 'auto', minWidth: 150, ...style
+  };
+  let look;
+  if (disabled) {
+    look = { background: 'transparent', borderColor: 'var(--rb-line)', color: 'var(--rb-faint)' };
+  } else if (variant === 'primary') {
+    look = hover
+      ? { background: 'transparent', color: 'var(--rb-primary)' }
+      : { background: 'var(--rb-primary)', color: '#04201d' };
+  } else if (variant === 'secondary') {
+    look = hover
+      ? { background: 'transparent', color: 'var(--rb-secondary)', borderColor: 'var(--rb-secondary)' }
+      : { background: 'var(--rb-secondary)', color: '#fff', borderColor: 'var(--rb-secondary)' };
+  } else { // ghost / outline
+    look = hover
+      ? { background: 'var(--rb-primary)', color: '#04201d' }
+      : { background: 'transparent', color: 'var(--rb-primary)' };
+  }
+  return (
+    <button type={type} disabled={disabled} onClick={onClick}
+      onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      style={{ ...base, ...look }}>
+      {children}
+    </button>
+  );
+}
+
+// ---- Progress bar (thin teal fill) ----
+function ProgressBar({ value }) {
+  return (
+    <div style={{ height: 4, width: '100%', background: 'var(--rb-progress-track)', overflow: 'hidden' }}>
+      <div style={{ height: '100%', width: `${Math.max(2, value * 100)}%`, background: 'var(--rb-primary)', transition: 'width .45s cubic-bezier(.2,.8,.2,1)' }} />
+    </div>
+  );
+}
+
+// ---- Single-choice option card (letter key, inverts on select/hover like bootcamp cards) ----
+function ChoiceCard({ letter, label, selected, onSelect }) {
+  const [hover, setHover] = React.useState(false);
+  const active = selected || hover;
+  return (
+    <button type="button"
+      onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      onClick={onSelect}
+      style={{
+        display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', textAlign: 'left',
+        padding: '0.95rem 1.1rem', borderRadius: 6, cursor: 'pointer',
+        border: `1.5px solid ${selected ? 'var(--rb-primary)' : 'var(--rb-line)'}`,
+        background: selected ? 'var(--rb-primary)' : (hover ? 'var(--rb-choice-hover)' : 'var(--rb-choice-bg)'),
+        color: selected ? '#04201d' : 'var(--rb-text)',
+        transition: 'all .15s ease', fontFamily: 'inherit'
+      }}>
+      <span style={{
+        flex: '0 0 auto', width: 30, height: 30, borderRadius: 4,
+        display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: '1.05rem',
+        border: `1.5px solid ${selected ? '#04201d' : (active ? 'var(--rb-primary)' : 'var(--rb-line)')}`,
+        color: selected ? '#04201d' : (active ? 'var(--rb-primary)' : 'var(--rb-faint)'),
+        background: 'transparent', transition: 'all .15s ease'
+      }}>{letter}</span>
+      <span style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1.15 }}>{label}</span>
+      {selected && (
+        <span style={{ marginLeft: 'auto', fontWeight: 800, fontSize: '1.2rem' }}>✓</span>
+      )}
+    </button>
+  );
+}
+
+// ---- Big text-style input used for text/email/tel ----
+function BigInput({ value, onChange, onEnter, placeholder, type = 'text', maxLength, autocomplete, invalid }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => { const id = setTimeout(() => ref.current && ref.current.focus(), 120); return () => clearTimeout(id); }, []);
+  return (
+    <input ref={ref} type={type} value={value} maxLength={maxLength} placeholder={placeholder}
+      autoComplete={autocomplete} inputMode={type === 'tel' ? 'tel' : (type === 'email' ? 'email' : 'text')}
+      onChange={(e) => onChange(e.target.value)}
+      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); onEnter && onEnter(); } }}
+      style={{
+        width: '100%', background: 'transparent', border: 'none', outline: 'none',
+        borderBottom: `2px solid ${invalid ? 'var(--rb-danger)' : 'var(--rb-line-strong)'}`,
+        padding: '0.5rem 0', color: 'var(--rb-text)', fontFamily: 'inherit',
+        fontSize: 'clamp(1.6rem, 5vw, 2.4rem)', fontWeight: 600, transition: 'border-color .15s ease'
+      }}
+      onFocus={(e) => { if (!invalid) e.target.style.borderBottomColor = 'var(--rb-primary)'; }}
+      onBlur={(e) => { e.target.style.borderBottomColor = invalid ? 'var(--rb-danger)' : 'var(--rb-line-strong)'; }}
+    />
+  );
+}
+
+function BigTextarea({ value, onChange, placeholder, maxLength }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => { const id = setTimeout(() => ref.current && ref.current.focus(), 120); return () => clearTimeout(id); }, []);
+  return (
+    <textarea ref={ref} value={value} maxLength={maxLength} placeholder={placeholder} rows={3}
+      onChange={(e) => onChange(e.target.value)}
+      style={{
+        width: '100%', background: 'var(--rb-choice-bg)', border: `1.5px solid var(--rb-line)`,
+        borderRadius: 8, padding: '1rem 1.1rem', color: 'var(--rb-text)', fontFamily: 'inherit',
+        fontSize: '1.3rem', fontWeight: 500, lineHeight: 1.35, resize: 'none', outline: 'none'
+      }}
+      onFocus={(e) => { e.target.style.borderColor = 'var(--rb-primary)'; }}
+      onBlur={(e) => { e.target.style.borderColor = 'var(--rb-line)'; }}
+    />
+  );
+}
+
+Object.assign(window, {
+  RebootWordmark, RebootMark, RBButton, ProgressBar, ChoiceCard, BigInput, BigTextarea
+});

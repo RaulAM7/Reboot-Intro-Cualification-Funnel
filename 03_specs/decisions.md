@@ -11,3 +11,5 @@ Short decision log.
 - 2026-06-06: [inferred] La marca y la experiencia deben sentirse 100% Reboot Academy, no Skilland ni EduKami. Status: accepted
 - 2026-06-06: [inferred] La conversion principal del funnel sera agendar o preparar una sesion one-to-one con contexto previo suficiente. Status: accepted
 - 2026-06-06: [inferred] No se asumiran decisiones tecnicas ni de integracion hasta que exista un documento especifico de implementacion. Status: accepted
+- 2026-06-07: La V1 se implementara en `Next.js + TypeScript + Tailwind` porque el repo actual no tiene app y este stack alinea bien con `Reboot-web-3.0`, Vercel y un backend seguro para Supabase. Status: accepted
+- 2026-06-07: `04_outputs/claude_design_v1/` se toma como base principal de UX, copy, flujo y scoring; se portara casi completo a una app limpia sin reutilizar su HTML/CDN/Babel tal cual. Status: accepted

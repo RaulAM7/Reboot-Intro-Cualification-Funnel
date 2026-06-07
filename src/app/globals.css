@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'PP Neue Machina';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/PPNeueMachina-PlainLight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PP Neue Machina';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/PPNeueMachina-PlainRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PP Neue Machina Display';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/PPNeueMachina-InktrapUltrabold.otf') format('opentype');
+}
+
+:root {
+  --rb-primary: hsl(176 73% 55%);
+  --rb-secondary: hsl(220 98% 74%);
+  --rb-black: hsl(174 56% 4%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--rb-black);
+  color: white;
+  font-family: 'Darker Grotesque', 'PP Neue Machina', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--rb-primary);
+  color: hsl(174 56% 8%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
